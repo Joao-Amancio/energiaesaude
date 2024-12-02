@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style2.css">
+    <title>Ficha de Ananmese</title>
+    <style>
+
+      h1 {
+        color: rgb(255, 111, 0);
+        font-size: 20px;
+        text-align: center;
+      }
+    /*  .wrapper {
+        left: 75px;        
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(224, 211, 211);
+        border: 5px solid rgb(182, 97, 32);
+        padding: 0;       
+};*/
+
+          .wrapper {
+        position: relative;
+        left: 62px;        
+        text-align: center;
+        width: 280px;
+        /*height: 367px;*/
+        height: 380px;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(224, 211, 211);
+        border: 5px solid rgb(182, 97, 32);
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+          .signature-pad {
+        position: relative;
+        width: 250px;
+        height: 367px;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+         .signature-pad {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 250px;
+        height: 367px;
+      }
+
+            
+      .button-container {
+        display: grid;
+        grid-auto-flow: column;
+        gap: 0px; /* Espaço entre os botões */
+      }
+
+      .enviar {
+        position: relative;
+        display: block; /* Altera para block para permitir margin auto */
+        margin: 20px auto; /* Margens automáticas nas laterais */
+        width: fit-content; /* Ajusta a largura do botão ao seu conteúdo */        
+        font-family: Helvetica, sans-serif;
+        font-size: 15px;
+        text-align: center;
+        text-decoration: none;        
+        padding: 10px 30px;       
+        border-radius: 5px;
+      }
+
+    input::placeholder {
+            color: black; 
+            opacity: 1; 
+        }
+      
+        .typing-container {
+         display: block;
+         position: fixed;
+         margin-top: 300px;
+         margin-right: 700px;        }
+    </style>
+</head>
+<body>
+    <div class="box">
+      
+        <div class="img-box">
+          <img src="./assets/img.png" />        
+          
+        <!--    <p class="frases">"Nada é impossível quando você se dedica." <br>
+"A persistência é a chave do sucesso." <br>
+"Cada gota de suor é um passo em direção à sua meta." <br>
+"A força está dentro de você, apenas a liberte."<br> 
+"Vença a batalha consigo mesmo a cada treino." <br>
+"Não espere pela oportunidade, crie-a." <br>
+"O corpo alcança o que a mente acredita." <br>
+"Treine com paixão, alcance com determinação." <br>
+"Seja o herói da sua própria jornada." </p> -->
+
+<div class="typing-container" id="typing-container">
+        <span id="typing-text"></span>
+      </div>
+        
+        </div>       
+        
+        
+        <div class="form-box">
+        <!-- <div id="profile">
+            <img src="./assets/img.png" alt="" />
+            
+          </div>--> 
+           
+          
+
+          <div class="form-box2">
+            <div id="profile2">
+              <img src="./assets/logo1.png" alt="" />        
+            </div> 
+          <p style="color: white;">MODELO DE ANAMINESE INTELIGENTE PARA VOCÊ APLICAR AGORA EM SEUS ALUNOS</p> 
+        <!-- <p style="font-size: 15px;" class="">Após o envio desta ficha, volte a esta pagina e <a href="./assinatura.html"><span style="color:green">clique AQUI</span></a> para Assinar.</p> --> 
+             <!---->      
+          <form action="https://formsubmit.co/amanciojr.144@gmail.com" id="form" method="post"  enctype="multipart/form-data" target="_blank">
+            
+            <input type="text" name="MODELO DE ANAMINESE INTELIGENTE PARA VOCÊ APLICAR AGORA EM SEUS ALUNOS" hidden>
+            <div class="input-group">            
+              <label for="name">Nome Completo:</label><br>
+              <input type="text" id="name" name="Nome Completo"
+              placeholder="Digite o seu nome completo" required>
+              
+            </div> <br>
+            <div class="input-group w50">
+            <label for="date">Data de Nascimento:</label>
+            <input type="date" id="date2" name="Data de Nascimento" required />
+            
+          </div>
+
+          <div class="input-group">
+            <label for="genero">Gênero: </label>
+            <select name="Genero" id="genero" required>
+              <option value="">Selecione</option>
+              <option value="masculino">Masculino</option>
+              <option value="feminino">Feminino</option>
+              <option value="outros">Outros</option>
+            </select>
+            
+          </div>
+          <div class="input-group">
+            <label for="telefone">Telefone:</label>
+            <input
+              type="text"
+              id="telefone" name="Telefone"
+              placeholder="(DDD) 9.9999-9999" required
+              
+            />
+            
+          </div>
+            <div class="input-group">
+            <label for="cep">Logradouro CEP:</label>
+            <input
+              type="text"
+              id="cep" name="CEP"
+              placeholder="Digite o cep do seu endereço" required
+              />
+              
+          </div>
+
+          <div class="input-group">
+            <label for="rua">Rua:</label>
+            <input
+              type="text"
+              id="rua" name="Rua"
+              placeholder="Digite o nome da sua rua" 
+              />
+              
+          </div>
+
+          <div class="input-group">
+            <label for="complemento">Complemento:</label>
+            <input
+              type="text"
+              id="complemento" name="Complemento"
+              placeholder="Número da Casa ou Apt" required
+             
+            />
+            
+
+          <div class="input-group w50">
+            <label for="bairro">Bairro:</label>
+            <input
+              type="text"
+              id="bairro" name="Bairro"
+              placeholder="Digite o Bairro" 
+            />
+            
+          </div>
+
+          <div class="input-group w50">
+            <label for="cidade">Cidade:</label>
+            <input
+              type="text"
+              id="cidade" name="Cidade"
+              placeholder="Digite a Cidade" 
+              />
+              
+          </div>
+          <div class="input-group">
+            <label for="estado">Estado:</label>
+            <input
+              type="text"
+              id="estado" name="Estado"
+              placeholder="Digite o Estado" 
+              />
+              
+          </div>
+            <br>
+            <div class="input-group">
+            <label for="ok" name="Quais são os seus objetivos com a prática de exercícios físico?">1. Quais são os seus objetivos com a prática de exercícios físico?</label>  
+            <input type="text" name="1. Quais são os seus objetivos com a prática de exercícios físico?" id="ok" hidden>
+                         
+            <input type="checkbox" id="prevencao" name="Prevenção" value="ok"/> 
+            <label id="label" for="prevencao">Prevenção</label>
+            <br>           
+            <input type="checkbox" id="condicionamento label" name="Condicionamento Físico" value="ok"/> 
+            <label id="label" for="condicionamento"> Condicionamento físico</label>
+            <br>
+            <input type="checkbox" id="lazer" name="Lazer" value="ok"/> 
+            <label id="label" for="lazer">Lazer</label>
+            <br>
+            <input type="checkbox" id="estetica" name="Estética" value="ok"/> 
+            <label id="label" for="estetica">Estética</label>
+           
+            <label for="outros">Outros:</label>
+            <input
+              type="text"
+              id="outros" name="outros"
+              required/>
+              <br><br>
+              <label for="ok" name="Qual a sua disponibilidade para treinar?">2. Qual a sua disponibilidade para treinar?</label>  
+            <input type="text" name="2. Qual a sua disponibilidade para treinar?" id="ok" hidden>
+            <input type="text" name="Dias na semana" placeholder="Digite os dias na semana"><br><br>
+            <input type="text" name="minutos por dia" placeholder="Digite os minutos por dia">
+<br><br>
+            <label for="ok" name="Quais são os tipos de exercícios físico que você gosta?">3. Quais são os tipos de exercícios físico que você gosta?</label>  
+            <input type="text" name="3. Quais são os tipos de exercícios físico que você gosta?" id="ok" hidden>
+                         
+            <input type="checkbox" id="musculação" name="Musculação" value="ok"/> 
+            <label id="label" for="musculação">Musculação</label>
+            <br>           
+            <input type="checkbox" id="treino" name="Treino com peso no corpo" value="ok"/> 
+            <label id="label" for="treino">Treino com peso no corpo </label>
+            <br>
+            <input type="checkbox" id="esteira" name="Esteira" value="ok"/> 
+            <label id="label" for="esteira">Esteira</label>
+            <br>
+            <input type="checkbox" id="bike" name="Bike" value="ok"/> 
+            <label id="label" for="bike">Bike</label>
+            <br>
+            <input type="checkbox" id="natação" name="Natação" value="ok"/> 
+            <label id="label" for="natação">Natação</label>
+            <br>
+            <input type="checkbox" id="lutas" name="Lutas" value="ok"/> 
+            <label id="label" for="lutas">Lutas</label>
+           
+            <label for="outros">Outros:</label>
+            <input
+              type="text"
+              id="outros" name="outros"
+              required/>
+
+           </div>
+          <br>          
+           
+            <tbody>  
+                <div class="input-group">   
+                <tr role="row" data-row-index="0">
+                  <td><b style="color: white;">4. Existe alguma coisa que você NÃO GOSTA de fazer durante a prática do exercício?</b></td><br><td data-id="1"><input name="4. Existe alguma coisa que você NÃO GOSTA de fazer durante a prática do exercício?" id="chkSelecionaInsere0" type="radio" value="Sim"/>&nbsp;Sim</td>&nbsp;&nbsp;<br>
+                   <td data-id="1"><input name="4. Existe alguma coisa que você NÃO GOSTA de fazer durante a prática do exercício?" id="chkSelecionaExcluir0" type="radio" value="Não" required/>&nbsp;Não</td>
+                 <br>
+                 <label for="text">Se Sim, Quais?</label>
+                 <input type="text" id="text" name="Se sim, Quais?">
+                </tr>
+                      </div> <br>
+              <div class="input-group"> 
+               <tr role="row" data-row-index="0">
+                 <td><b style="color: white;">5. Nos últimos 3 meses você estava praticando algum tipo de exercício físico?</b></td>
+                <br> <td data-id="2"><input name="5. Nos últimos 3 meses você estava praticando algum tipo de exercício físico?" id="chkSelecionaInsere1" type="radio" value="Sim"/>&nbsp;Sim</td>&nbsp;&nbsp;<br>
+                   <td data-id="2"><input name="5. Nos últimos 3 meses você estava praticando algum tipo de exercício físico?" id="chkSelecionaExcluir1" type="radio" value="Não" required/>&nbsp;Não</td>
+                   <br><label for="text">Se a sua resposta for SIM, por favor me informe:</label>
+                 <input type="text" id="text" name="Se a sua resposta for SIM, por favor me informe:" hidden>
+                 <label for="tipo">Qual o tipo de exercício físico estava praticando?</label>
+                 <input type="text" id="tipo" name="Qual o tipo de exercício físico estava praticando?" placeholder="Tipo de exercício que estava praticando">
+                 <label for="vezes">Quantas vezes por semana estava praticando?</label>
+                 <input type="text" id="vezes" name="Quantas vezes por semana estava praticando?" placeholder="Vezes por semana">
+                 <label for="minutos">Quantos minutos por dia estava praticando?</label>
+                 <input type="text" id="minutos" name="Quantos minutos por dia estava praticando?" placeholder="Minutos por dia">
+                 <label for="intensidade">Qual era a intensidade?</label>
+                 <input type="text" id="intesidade" name="Qual era a intensidade?" placeholder="LEVE, MODERADA OU RIGOROSA?">
+               </tr>
+              </div> <br>
+               <div class="input-group"> 
+               <tr role="row" data-row-index="0">
+                 <td><b style="color: white;">6. Você apresenta alguma doença que foi diagnosticada pelo médico? </b></td>
+               </tr>
+                <br> <td data-id="3"><input name="6. Você apresenta alguma doença que foi diagnosticada pelo médico?" id="chkSelecionaInsere2" type="radio" value="Sim"/>&nbsp;Sim</td>&nbsp;&nbsp;<br>
+                   <td data-id="3"><input name="6. Você apresenta alguma doença que foi diagnosticada pelo médico?" id="chkSelecionaExcluir2" type="radio" value="Não" required/>&nbsp;Não</td>
+                   <br><label for="text">Se Sim, Qual(is)?</label>
+                 <input type="text" id="text" name="Se sim, Qual(is)?">
+                 <label for="text">Caso sua resposta tenha sido SIM, por favor, informe o nome dos remédios que está tomando:</label>
+                 <input type="text" id="text" name="Caso sua resposta tenha sido SIM, por favor, informe o nome dos remédios que está tomando:">
+               </tr> 
+              </div> <br>
+               <div class="input-group"> 
+               <tr role="row" data-row-index="0">
+                <td><b style="color: white;">7. Você fez alguma cirurgia?</b></td>
+               <br> <td data-id="4"><input name="7. Você fez alguma cirurgia?" id="chkSelecionaInsere3" type="radio" value="Sim"/>&nbsp;Sim</td>&nbsp;&nbsp;<br>
+                  <td data-id="4"><input name="7. Você fez alguma cirurgia?" id="chkSelecionaExcluir3" type="radio" value="Não" required/>&nbsp;Não</td>
+                  <label for="text">Se a sua resposta foi SIM, por favor, indique a região do corpo onde foi realizada a cirurgia:</label>
+                  <input type="text" id="text" name="Se a sua resposta foi SIM, por favor, indique a região do corpo onde foi realizada a cirurgia:">
+              </tr> 
+            </div> <br>
+              <div class="input-group"> 
+              <tr role="row" data-row-index="0">
+                <td><b style="color: white;">8. Atualmente você sente algum tipo de dor ou desconforto muscular?</b></td>
+               <br> <td data-id="5"><input name="8. Atualmente você sente algum tipo de dor ou desconforto muscular?" id="chkSelecionaInsere4" type="radio" value="Sim"/>&nbsp;Sim</td>&nbsp;&nbsp;<br>
+                  <td data-id="5"><input name="8. Atualmente você sente algum tipo de dor ou desconforto muscular?" id="chkSelecionaExcluir4" type="radio" value="Não" required/>&nbsp;Não</td>
+                  <br><label for="text">Se SIM, qual(is) região(ões)</label>
+                <input type="text" id="text" name="Se SIM, qual(is) região(ões)">
+                <label for="text">Para cada região que você relatou sentir DOR, por favor, usando a escala de 0 (Zero) a 10(Dez), atribua uma nota e caso tenha alguma dificuldade de realizar movimentos no dia a dia, escreva ao lado da nota, quais as principais dificuldades.</label>
+                <input type="text" id="text" name="Para cada região que você relatou sentir DOR, por favor, usando a escala de 0 (Zero) a 10(Dez), atribua uma nota e caso tenha alguma dificuldade de realizar movimentos no dia a dia, escreva ao lado da nota, quais as principais dificuldades." hidden>
+                
+                
+                <label for="text">Região 1 / Nota de 0 a 10 / Dificuldade:</label>
+                <input type="text" id="text" name="Região 1 / Nota de 0 a 10 / Dificuldade" placeholder="Região 1 / Nota de 0 a 10 / Dificuldade">
+                <label for="text">Região 2 / Nota de 0 a 10 / Dificuldade:</label>
+                <input type="text" id="text" name="Região 2 / Nota de 0 a 10 / Dificuldade" placeholder="Região 2 / Nota de 0 a 10 / Dificuldade">
+                <label for="text">Região 3 / Nota de 0 a 10 / Dificuldade:</label>
+                <input type="text" id="text" name="Região 3 / Nota de 0 a 10 / Dificuldade" placeholder="Região 3 / Nota de 0 a 10 / Dificuldade">
+                <label for="text">Região 4 / Nota de 0 a 10 / Dificuldade:</label>
+                <input type="text" id="text" name="Região 4 / Nota de 0 a 10 / Dificuldade" placeholder="Região 4 / Nota de 0 a 10 / Dificuldade">
+              </tr>  
+            </div> <br>
+              <div class="input-group">                                                                                                             
+              <tr role="row" data-row-index="0">
+                <td><b style="color: white;">9. Você sente dor no peito quando realiza exercício físico?</b></td>
+              </tr>
+               <br> <td data-id="6"><input name="9. Você sente dor no peito quando realiza exercício físico?" id="chkSelecionaInsere5" type="radio" value="Sim"/>&nbsp;Sim</td>&nbsp;&nbsp;<br>
+                  <td data-id="6"><input name="9. Você sente dor no peito quando realiza exercício físico?" id="chkSelecionaExcluir5" type="radio" value="Não" required/>&nbsp;Não</td>
+                  <br>                
+              </tr> 
+            </div> <br>
+              <div class="input-group"> 
+              <tr role="row" data-row-index="0">
+                <td><b style="color: white;">10. Você já perdeu o equilíbrio por causa da tontura ou alguma vez perdeu a consciência?</b></td>
+              </tr>
+               <br> <td data-id="7"><input name="10. Você já perdeu o equilíbrio por causa da tontura ou alguma vez perdeu a consciência?" id="chkSelecionaInsere6" type="radio" value="Sim"/>&nbsp;Sim</td>&nbsp;&nbsp;<br>
+                  <td data-id="7"><input name="10. Você já perdeu o equilíbrio por causa da tontura ou alguma vez perdeu a consciência?" id="chkSelecionaExcluir6" type="radio" value="Não" required/>&nbsp;Não</td>
+                  <br>
+              </tr> 
+            </div> <br>
+              <div class="input-group"> 
+              <tr role="row" data-row-index="0">
+                <td><b style="color: white;">11. Imagine movimentos que você realize em seu dia a dia (na sua casa, no seu trabalho, subir e descer escadas, caminhar, correr), você sente algum tipo de desconforto ao realizar essas atividades?</b></td>
+               <br> <td data-id="8"><input name="11. Imagine movimentos que você realize em seu dia a dia (na sua casa, no seu trabalho, subir e descer escadas, caminhar, correr), você sente algum tipo de desconforto ao realizar essas atividades?" id="chkSelecionaInsere7" type="radio" value="Sim"/>&nbsp;Sim</td>&nbsp;&nbsp;<br>
+                  <td data-id="8"><input name="11. Imagine movimentos que você realize em seu dia a dia (na sua casa, no seu trabalho, subir e descer escadas, caminhar, correr), você sente algum tipo de desconforto ao realizar essas atividades?" id="chkSelecionaExcluir7" type="radio" value="Não" required/>&nbsp;Não</td>
+                  <br><label for="text">Se a resposta foi SIM, por favor descreva abaixo, quais são os tipos de atividades e dificuldades que sente:</label>
+                <input type="text" id="text" name="Se a resposta foi SIM, por favor descreva abaixo, quais são os tipos de atividades e dificuldades que sente:">
+                  </tr> 
+                </div> <br> 
+                  <div class="input-group"> 
+                  <tr role="row" data-row-index="0">
+                    <td><b style="color: white;">12. Algum parente seu de primeiro grau tem problemas cardíacos?</b></td>
+                  </tr>
+                   <br> <td data-id="9"><input name="12. Algum parente seu de primeiro grau tem problemas cardíacos?" id="chkSelecionaInsere8" type="radio" value="Sim"/>&nbsp;Sim</td>&nbsp;&nbsp;<br>
+                      <td data-id="9"><input name="12. Algum parente seu de primeiro grau tem problemas cardíacos?" id="chkSelecionaExcluir8" type="radio" value="Não" required/>&nbsp;Não</td>
+                      <label for="text">Se sua resposta foi SIM, por favor descreva o número de parentes de primeiro grau que tem problemas cardíacos:</label>
+                      <input type="text" id="text" name="Se sua resposta foi SIM, por favor descreva o número de parentes de primeiro grau que tem problemas cardíacos:" >
+                  </tr>  
+                </div> <br>
+                  <div class="input-group"> 
+                  <tr role="row" data-row-index="0">
+                    <td><b style="color: white;">13. Você fuma?</b></td>
+                   <br> <td data-id="10"><input name="13. Você fuma?" id="chkSelecionaInsere9" type="radio" value="Sim"/>&nbsp;Sim</td>&nbsp;&nbsp;<br>
+                      <td data-id="10"><input name="13. Você fuma?" id="chkSelecionaExcluir9" type="radio" value="Não" required/>&nbsp;Não</td>
+                      <br>
+                      </tr> 
+                    </div> <br>                                       
+          </tbody>
+
+          
+            <br><h3>Finalizando:</h3><br><br> 
+
+          <div class="input-group"> 
+            <label for="text">14. Se tiver outras informações que julgar serem relevantes para elaboração do seu programa de treinamento, por favor descreva abaixo:</label> 
+            
+           <br>
+           
+            <textarea name="14. Se tiver outras informações que julgar serem relevantes para elaboração do seu programa de treinamento, por favor descreva:" id="text" cols="105" rows="10" placeholder="Descreva aqui, outras informações que julgar serem relevantes para elaboração do seu programa de treinamento" required ></textarea>
+          </div>
+          
+            <br>           
+             <div class="input-group">            
+            <input type="radio" name="Termo de Consentimento Livre e Esclarecido" value="Recebi todas as orientações necessárias para resposnder o questionário li e entendi todas as perguntas e respondi com a verdade" required> &nbsp; <b style="color: white;"> Atesto para os devidos fins que recebi todas as orientações necessárias para responder o questionário, li e entendi todas as perguntas e respondi com a verdade. </b>
+            </div>
+            <!-- MUDEI AQUI-->
+            <br><h1>Faça a sua Assinatura</h1>
+            <br>
+            <div class="wrapper">
+        <canvas
+          id="signature-pad"
+          class="signature-pad"
+          width="250"
+          height="367"
+        ></canvas>
+      </div><br>
+      <div class="button-container">
+       <br> <button type="button" id="clear" class="button">Apagar</button>
+        <br><br><button type="button" id="download" class="button">Download</button>
+      </div>
+       <br>
+
+       
+
+      <label for="picture__input">Carregar Assinatura:</label>
+      <input type="file" name="Assinatura em Anexo" id="picture__input" required />
+
+      <br /><br /><label for="text">Nome Completo:</label>
+      <input
+        style="border-radius: 10px; width: 250px"
+        type="text"
+        id="text"
+        name="Nome Completo:"
+        required
+      />
+
+      <br /><br />
+      
+
+      <label for="date2">Data de hoje:</label>
+      <input type="date" id="date2" name="date" required />
+           <br><br>
+           <div class="enviar">
+          <button type="submit" class="button">Enviar</button>
+          </div>
+        </form>
+          <br><br><!-- <p style="font-size: 15px;" class="">Após o envio desta ficha, volte a esta pagina e <a href="./assinatura.html"><span style="color:green">clique AQUI</span></a> para Assinar.</p>-->
+        
+
+          <script>
+      document.getElementById("cep").addEventListener("keyup", function () {
+        var cep = this.value.replace(/\D/g, "");
+
+        if (cep.length === 8) {
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", "https://viacep.com.br/ws/" + cep + "/json/");
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              var response = JSON.parse(xhr.responseText);
+
+              document.getElementById("rua").value = response.logradouro;
+              document.getElementById("bairro").value = response.bairro;
+              document.getElementById("cidade").value = response.localidade;
+              document.getElementById("estado").value = response.uf;
+            }
+          };
+          xhr.send();
+        }
+      });
+    </script>
+
+    <!-- MUDEI AQUI -->
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@3.0.0-beta.3/dist/signature_pad.min.js"></script>
+    <script>
+      const signaturePad = new SignaturePad(
+        document.getElementById("signature-pad"),
+        {
+          backgroundColor: "rgba(255, 255, 255, 0)",
+          penColor: "rgb(0, 0, 0)",
+        }
+      )
+
+      document.getElementById("clear").addEventListener("click", function () {
+        signaturePad.clear()
+      })
+
+      document
+        .getElementById("download")
+        .addEventListener("click", function () {
+          if (signaturePad.isEmpty()) {
+            alert("Não há assinatura para baixar.")
+          } else {
+            const dataURL = signaturePad.toDataURL()
+            const link = document.createElement("a")
+            link.href = dataURL
+            link.download = "assinatura.png"
+            link.click()
+          }
+        })
+
+      document
+        .getElementById("form")
+        .addEventListener("submit", function (event) {
+          // Estamos apenas permitindo o envio do arquivo em vez de capturar a assinatura como Base64
+          if (signaturePad.isEmpty()) {
+            alert("Por favor, faça sua assinatura.")
+            event.preventDefault() // Impede o envio do formulário se a assinatura estiver vazia
+          }
+        })
+    </script>
+    <script>
+    const text = "Nada é impossível quando você se dedica. A persistência é a chave do sucesso. Cada gota de suor é um passo em direção à sua meta. A força está dentro de você, apenas a liberte. Vença a batalha consigo mesmo a cada treino. Não espere pela oportunidade, crie-a. O corpo alcança o que a mente acredita. Treine com paixão, alcance com determinação. Seja o herói da sua própria jornada.";
+    const sentences = text.split('. ').map(sentence => sentence.trim() + '.'); // Divide o texto em frases
+    let index = 0;
+    const speed = 100; // Velocidade da digitação em milissegundos
+
+    function typeText() {
+        if (index < sentences.length) {
+            const sentence = sentences[index];
+            let charIndex = 0;
+
+            function typeChar() {
+                if (charIndex < sentence.length) {
+                    document.getElementById("typing-text").innerHTML += sentence.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeChar, speed);
+                } else {
+                    document.getElementById("typing-text").innerHTML += '<br>'; // Adiciona uma quebra de linha após a frase
+                    index++;
+                    setTimeout(typeText, speed * 2); // Aguarda um tempo extra antes de iniciar a próxima frase
+                }
+            }
+
+            typeChar();
+        }
+    }
+
+    // Função para iniciar a digitação quando o elemento estiver visível
+    function startTyping(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                typeText();
+                observer.disconnect(); // Para observar apenas uma vez
+            }
+        });
+    }
+
+    // Configuração do Intersection Observer
+    const observer = new IntersectionObserver(startTyping, { threshold: 1.0 });
+    observer.observe(document.getElementById('typing-container'));
+</script>
+    
+            </body>
+          <br><br>
+</html>
