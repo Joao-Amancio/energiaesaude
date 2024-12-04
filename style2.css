@@ -495,6 +495,11 @@ form .input-group select {
   transition: opacity 0.3s, visibility 0.3s;
 }
 
+.instagram-button {
+  -webkit-tap-highlight-color: transparent; /* Remove o flash azul em dispositivos Android */
+  outline: none; /* Remove o contorno de foco */
+}
+
 .instagram-button img {
   width: 45px;
   height: 45px;
