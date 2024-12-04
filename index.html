@@ -439,6 +439,12 @@
            <div class="enviar">
           <button type="submit" class="button">Enviar</button>
           </div>
+
+          <div class="instagram-button hidden" id="instagramButton">
+    <a href="https://www.instagram.com/estudioenergiaesaude" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    </a>
+  </div>
           <a href="#" class="back-to-top" id="back-to-top">&#8679;</a>
         </form>
           <br><br><!-- <p style="font-size: 15px;" class="">Após o envio desta ficha, volte a esta pagina e <a href="./assinatura.html"><span style="color:green">clique AQUI</span></a> para Assinar.</p>-->
@@ -567,7 +573,32 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 
 </script>
+
+<script>
+    var instagramButton = document.getElementById('instagramButton');
+    var bodyHeight = document.body.scrollHeight;
+    var hidePercentage = 100; // Porcentagem do corpo onde o botão do Instagram deve desaparecer
+
+    window.addEventListener('scroll', function() {
+      var scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+      var scrollPercentage = (scrollPosition / bodyHeight) * 100;
+
+      if (scrollPosition === 0 || scrollPercentage >= hidePercentage) {
+        instagramButton.classList.add('hidden');
+      } else {
+        instagramButton.classList.remove('hidden');
+      }
+    });
+  </script>  
     
+<script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
             </body>
           <br><br>
 </html>
