@@ -127,7 +127,7 @@
               
             </div> <br>
             <div class="input-group w50">
-            <label for="date">Qual a sua Idade?</label>
+            <label for="date2">Qual a sua Idade?</label>
             <input type="text" id="date2" name="Qual a sua Idade?" required />
             
           </div>
@@ -439,6 +439,7 @@
            <div class="enviar">
           <button type="submit" class="button">Enviar</button>
           </div>
+          <a href="#" class="back-to-top" id="back-to-top">&#8679;</a>
         </form>
           <br><br><!-- <p style="font-size: 15px;" class="">Após o envio desta ficha, volte a esta pagina e <a href="./assinatura.html"><span style="color:green">clique AQUI</span></a> para Assinar.</p>-->
         
@@ -544,6 +545,27 @@
     // Configuração do Intersection Observer
     const observer = new IntersectionObserver(startTyping, { threshold: 1.0 });
     observer.observe(document.getElementById('typing-container'));
+</script>
+
+<script>
+// Evento de clique para a seta "Voltar ao topo"
+document.addEventListener("DOMContentLoaded", function () {
+  var backToTopButton = document.getElementById("back-to-top")
+
+  window.addEventListener("scroll", function () {
+    if (window.pageYOffset > 300) {
+      backToTopButton.style.display = "block"
+    } else {
+      backToTopButton.style.display = "none"
+    }
+  })
+
+  backToTopButton.addEventListener("click", function (event) {
+    event.preventDefault()
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  })
+})
+
 </script>
     
             </body>
