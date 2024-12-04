@@ -500,6 +500,12 @@ form .input-group select {
   outline: none; /* Remove o contorno de foco */
 }
 
+#instagramButton {
+   -webkit-tap-highlight-color: transparent; /* Remove o flash azul em dispositivos Android */
+  outline: none; /* Remove o contorno de foco */
+}
+
+
 .instagram-button img {
   width: 45px;
   height: 45px;
