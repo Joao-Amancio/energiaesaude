@@ -501,10 +501,9 @@ form .input-group select {
 }
 
 #instagramButton {
-   -webkit-tap-highlight-color: transparent; /* Remove o flash azul em dispositivos Android */
+  -webkit-tap-highlight-color: transparent; /* Remove o flash azul em dispositivos Android */
   outline: none; /* Remove o contorno de foco */
 }
-
 
 .instagram-button img {
   width: 45px;
@@ -525,6 +524,34 @@ form .input-group select {
 }
 
 .instagram-button img {
+  -webkit-tap-highlight-color: transparent; /* Remove o flash azul em dispositivos Android */
+  outline: none; /* Remove o contorno de foco */
+}
+
+footer {
+  font-weight: bold;
+  border: solid 2px rgba(68, 68, 64, 0.462);
+  border-radius: 10px;
+}
+
+footer,
+.amancio  {
+  padding: 5px 25px 5px 25px;
+  background: rgba(0, 0, 0, 0.024);
+  margin-bottom: -100px;
+}
+
+footer,
+p {
+  color: white;
+}
+
+.a {
+  background: none;
+  border: none;
+}
+
+a {
   -webkit-tap-highlight-color: transparent; /* Remove o flash azul em dispositivos Android */
   outline: none; /* Remove o contorno de foco */
 }
