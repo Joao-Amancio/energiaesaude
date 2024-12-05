@@ -81,7 +81,7 @@ input[type="checkbox"] {
   position: fixed;
   width: 30%;
   padding-top: 30px;
-  left: 250px;
+  left: 220px;
   margin-bottom: 110%;
   border-radius: 70px;
 }
@@ -535,7 +535,7 @@ footer {
 }
 
 footer,
-.amancio  {
+.amancio {
   padding: 5px 25px 5px 25px;
   background: rgba(0, 0, 0, 0.024);
   margin-bottom: -100px;
