@@ -500,6 +500,33 @@
 
   let canSign = false; // Variável para controlar se o usuário pode assinar
 
+  // Função para verificar se o usuário pode assinar
+function checkUserEligibility(user) {
+    // Exemplo de condições para permitir a assinatura
+    if (user.age >= 18 && user.isVerified) {
+        canSign = true; // O usuário pode assinar
+    } else {
+        canSign = false; // O usuário não pode assinar
+    }
+}
+
+// Exemplo de usuário
+const user = {
+    age: 20,
+    isVerified: true
+};
+
+// Verificar se o usuário pode assinar
+checkUserEligibility(user);
+
+// Exibir o resultado
+if (canSign) {
+    console.log("O usuário pode assinar.");
+} else {
+    console.log("O usuário não pode assinar.");
+}
+
+
   document.getElementById("clear").addEventListener("click", function () {
     signaturePad.clear();
   });
