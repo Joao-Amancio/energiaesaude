@@ -488,20 +488,17 @@
     </script>
 
     <!-- MUDEI AQUI -->
-    <script src="https://cdn.jsdelivr.net/npm/signature_pad@3.0.0-beta.3/dist/signature_pad.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/signature_pad@3.0.0/dist/signature_pad.min.js"></script>
 <script>
-    const signaturePad = new SignaturePad(
-        document.getElementById("signature-pad"),
-        {
-            backgroundColor: "rgba(255, 255, 255, 0)",
-            penColor: "rgb(0, 0, 0)",
-        }
-    );
+    const signaturePad = new SignaturePad(document.getElementById("signature-pad"), {
+        backgroundColor: "rgba(255, 255, 255, 0)",
+        penColor: "rgb(0, 0, 0)",
+    });
 
-    let signingEnabled = false; // Variável para controlar se a assinatura está habilitada
+    let signingEnabled = false;
 
     document.getElementById("sign").addEventListener("click", function () {
-        signingEnabled = true; // Ativa a possibilidade de assinar
+        signingEnabled = true;
         alert("Agora você pode assinar!");
     });
 
@@ -521,16 +518,7 @@
         }
     });
 
-    // Adiciona um evento de mouse para o canvas
     const canvas = document.getElementById("signature-pad");
-    canvas.addEventListener("mousemove", function (event) {
-        if (signingEnabled) {
-            const rect = canvas.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-            signaturePad.mouseMove(x, y);
-        }
-    });
 
     canvas.addEventListener("mousedown", function (event) {
         if (signingEnabled) {
@@ -541,13 +529,29 @@
         }
     });
 
+    canvas.addEventListener("mousemove", function (event) {
+        if (signingEnabled) {
+            const rect = canvas.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            signaturePad.mouseMove(x, y);
+        }
+    });
+
     canvas.addEventListener("mouseup", function () {
         if (signingEnabled) {
             signaturePad.mouseUp();
         }
     });
 
+    canvas.addEventListener("mouseleave", function () {
+        if (signingEnabled) {
+            signaturePad.mouseUp();
+        }
+    });
+
     canvas.addEventListener("touchstart", function (event) {
+        event.preventDefault();
         if (signingEnabled) {
             const rect = canvas.getBoundingClientRect();
             const x = event.touches[0].clientX - rect.left;
@@ -557,11 +561,12 @@
     });
 
     canvas.addEventListener("touchmove", function (event) {
+        event.preventDefault();
         if (signingEnabled) {
             const rect = canvas.getBoundingClientRect();
             const x = event.touches[0].clientX - rect.left;
             const y = event.touches[0].clientY - rect.top;
-            signaturePad.mouseMove(x, y);
+            signaturePad.touchMove(x, y);
         }
     });
 
@@ -571,7 +576,6 @@
         }
     });
 </script>
-
 
     <script>
     const text = "Nada é impossível quando você se dedica. A persistência é a chave do sucesso. Cada gota de suor é um passo em direção à sua meta. A força está dentro de você, apenas a liberte. Vença a batalha consigo mesmo a cada treino. Não espere pela oportunidade, crie-a. O corpo alcança o que a mente acredita. Treine com paixão, alcance com determinação. Seja o herói da sua própria jornada.";
