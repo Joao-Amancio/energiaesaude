@@ -411,9 +411,9 @@
         ></canvas>
       </div><br>
       <div class="button-container">
-        
+        <button type="button" id="enable-sign" class="button">Assinar</button>
        <br> <button type="button" id="clear" class="button">Apagar</button>
-        <br><br><button type="button" id="download" class="button">Download</button>
+        <br><button type="button" id="download" class="button">Download</button>
       </div>
        <br>
 
@@ -489,43 +489,41 @@
 
     <!-- MUDEI AQUI -->
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@3.0.0-beta.3/dist/signature_pad.min.js"></script>
-    <script>
-      const signaturePad = new SignaturePad(
-        document.getElementById("signature-pad"),
-        {
-          backgroundColor: "rgba(255, 255, 255, 0)",
-          penColor: "rgb(0, 0, 0)",
-        }
-      )
+<script>
+  // Inicializa o canvas mas desativa o desenho inicialmente
+  const canvas = document.getElementById("signature-pad");
+  const signaturePad = new SignaturePad(canvas, {
+    backgroundColor: "rgba(255, 255, 255, 0)",
+    penColor: "rgb(0, 0, 0)",
+  });
+  signaturePad.off(); // Desativa o canvas inicialmente
 
-      document.getElementById("clear").addEventListener("click", function () {
-        signaturePad.clear()
-      })
+  // Botão para habilitar a assinatura
+  document.getElementById("enable-sign").addEventListener("click", function () {
+    signaturePad.on(); // Ativa o canvas
+    document.getElementById("clear").disabled = false; // Habilita o botão de apagar
+    document.getElementById("download").disabled = false; // Habilita o botão de download
+    alert("Agora você pode assinar no canvas.");
+  });
 
-      document
-        .getElementById("download")
-        .addEventListener("click", function () {
-          if (signaturePad.isEmpty()) {
-            alert("Não há assinatura para baixar.")
-          } else {
-            const dataURL = signaturePad.toDataURL()
-            const link = document.createElement("a")
-            link.href = dataURL
-            link.download = "assinatura.png"
-            link.click()
-          }
-        })
+  // Botão para apagar a assinatura
+  document.getElementById("clear").addEventListener("click", function () {
+    signaturePad.clear();
+  });
 
-      document
-        .getElementById("form")
-        .addEventListener("submit", function (event) {
-          // Estamos apenas permitindo o envio do arquivo em vez de capturar a assinatura como Base64
-          if (signaturePad.isEmpty()) {
-            alert("Por favor, faça sua assinatura.")
-            event.preventDefault() // Impede o envio do formulário se a assinatura estiver vazia
-          }
-        })
-    </script>
+  // Botão para baixar a assinatura
+  document.getElementById("download").addEventListener("click", function () {
+    if (signaturePad.isEmpty()) {
+      alert("Não há assinatura para baixar.");
+    } else {
+      const dataURL = signaturePad.toDataURL();
+      const link = document.createElement("a");
+      link.href = dataURL;
+      link.download = "assinatura.png";
+      link.click();
+    }
+  });
+</script>
 
     <script>
     const text = "Nada é impossível quando você se dedica. A persistência é a chave do sucesso. Cada gota de suor é um passo em direção à sua meta. A força está dentro de você, apenas a liberte. Vença a batalha consigo mesmo a cada treino. Não espere pela oportunidade, crie-a. O corpo alcança o que a mente acredita. Treine com paixão, alcance com determinação. Seja o herói da sua própria jornada.";
