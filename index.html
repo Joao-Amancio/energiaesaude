@@ -411,6 +411,7 @@
         ></canvas>
       </div><br>
       <div class="button-container">
+        <button type="button" id="sign" class="button">Assinar</button> <!-- Novo botão -->
        <br> <button type="button" id="clear" class="button">Apagar</button>
         <br><br><button type="button" id="download" class="button">Download</button>
       </div>
@@ -488,43 +489,65 @@
 
     <!-- MUDEI AQUI -->
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@3.0.0-beta.3/dist/signature_pad.min.js"></script>
-    <script>
-      const signaturePad = new SignaturePad(
-        document.getElementById("signature-pad"),
-        {
-          backgroundColor: "rgba(255, 255, 255, 0)",
-          penColor: "rgb(0, 0, 0)",
-        }
-      )
+<script>
+  const signaturePad = new SignaturePad(
+    document.getElementById("signature-pad"),
+    {
+      backgroundColor: "rgba(255, 255, 255, 0)",
+      penColor: "rgb(0, 0, 0)",
+    }
+  );
 
-      document.getElementById("clear").addEventListener("click", function () {
-        signaturePad.clear()
-      })
+  let canSign = false; // Variável para controlar se o usuário pode assinar
 
-      document
-        .getElementById("download")
-        .addEventListener("click", function () {
-          if (signaturePad.isEmpty()) {
-            alert("Não há assinatura para baixar.")
-          } else {
-            const dataURL = signaturePad.toDataURL()
-            const link = document.createElement("a")
-            link.href = dataURL
-            link.download = "assinatura.png"
-            link.click()
-          }
-        })
+  document.getElementById("clear").addEventListener("click", function () {
+    signaturePad.clear();
+  });
 
-      document
-        .getElementById("form")
-        .addEventListener("submit", function (event) {
-          // Estamos apenas permitindo o envio do arquivo em vez de capturar a assinatura como Base64
-          if (signaturePad.isEmpty()) {
-            alert("Por favor, faça sua assinatura.")
-            event.preventDefault() // Impede o envio do formulário se a assinatura estiver vazia
-          }
-        })
-    </script>
+  document.getElementById("download").addEventListener("click", function () {
+    if (signaturePad.isEmpty()) {
+      alert("Não há assinatura para baixar.");
+    } else {
+      const dataURL = signaturePad.toDataURL();
+      const link = document.createElement("a");
+      link.href = dataURL;
+      link.download = "assinatura.png";
+      link.click();
+    }
+  });
+
+  document.getElementById("sign").addEventListener("click", function () {
+    canSign = true; // Permite ao usuário assinar
+    alert("Você pode agora fazer sua assinatura.");
+    // Adicionar eventos para permitir a assinatura
+    const signaturePadElement = document.getElementById("signature-pad");
+    signaturePadElement.addEventListener("mousedown", startSigning);
+    signaturePadElement.addEventListener("mouseup", stopSigning);
+    signaturePadElement.addEventListener("mouseleave", stopSigning);
+    signaturePadElement.addEventListener("touchstart", startSigning);
+    signaturePadElement.addEventListener("touchend", stopSigning);
+  });
+
+  function startSigning(event) {
+    if (!canSign) return;
+    event.preventDefault(); // Previne o comportamento padrão (especialmente em dispositivos móveis)
+    signaturePad.onBegin(event);
+  }
+
+  function stopSigning(event) {
+    if (!canSign) return;
+    signaturePad.onEnd();
+  }
+
+  document.getElementById("form").addEventListener("submit", function (event) {
+    if (signaturePad.isEmpty()) {
+      alert("Por favor, faça sua assinatura.");
+      event.preventDefault(); // Impede o envio do formulário se a assinatura estiver vazia
+    }
+  });
+</script>
+
+
     <script>
     const text = "Nada é impossível quando você se dedica. A persistência é a chave do sucesso. Cada gota de suor é um passo em direção à sua meta. A força está dentro de você, apenas a liberte. Vença a batalha consigo mesmo a cada treino. Não espere pela oportunidade, crie-a. O corpo alcança o que a mente acredita. Treine com paixão, alcance com determinação. Seja o herói da sua própria jornada.";
     const sentences = text.split('. ').map(sentence => sentence.trim() + '.'); // Divide o texto em frases
