@@ -26,8 +26,10 @@
           .wrapper {
         position: relative;               
         text-align: center;
-        width: 280px;       
-        height: 380px;
+       /* width: 280px;       
+        height: 380px;*/  
+         width: 300px;       
+        height: 400px;     
         
         background-color: rgb(224, 211, 211);
         border: 5px solid rgb(182, 97, 32);
@@ -40,8 +42,10 @@
 
           .signature-pad {
         position: relative;
-        width: 250px;
-        height: 367px;        
+       /* width: 250px;
+        height: 367px; */
+         width: 280px;
+        height: 387px;           
         -moz-user-select: none;
         -webkit-user-select: none;
         -ms-user-select: none;
@@ -59,12 +63,14 @@
         display: block; /* Altera para block para permitir margin auto */
         margin: 20px auto; /* Margens automáticas nas laterais */
         width: fit-content; /* Ajusta a largura do botão ao seu conteúdo */        
-        font-family: Helvetica, sans-serif;
-        font-size: 15px;
+       font-family: 'Times New Roman', Times, serif;
+        font-size: 16px;
+        font-weight: bold;
         text-align: center;
         text-decoration: none;        
         padding: 10px 30px;       
         border-radius: 5px;
+        cursor: pointer;
       }
 
     input::placeholder {
@@ -78,6 +84,7 @@
          margin-top: 300px;
          margin-right: 700px;        }
     </style>
+    
 </head>
 <body>
     <div class="box">
@@ -412,17 +419,24 @@
       </div><br>
       <div class="button-container"><br>
         <button type="button" id="enable-sign" class="button">Assinar</button>
-        <button type="button" id="clear" class="button">Apagar</button>
-        <button type="button" id="download" class="button">Download</button>
+    <br><br>
+    <button type="button" id="clear" class="button" disabled>Apagar</button>
+    <br><br>
+    <button type="button" id="prepare-submit" class="button" disabled>
+      Preparar Envio
+    </button>
+    <br><br>
+    <input type="file" id="signature-file" name="file" style="display: none;" />
+   <!-- <button type="submit" id="submit-form" class="button" disabled>Enviar</button>-->
       </div>
        <br>
 
        
-
+<!--
       <label for="picture__input">Carregar Assinatura:</label>
-      <input type="file" name="Assinatura em Anexo" id="picture__input" required />
+      <input type="file" name="Assinatura em Anexo" id="picture__input" required /> -->
 
-      <br /><br /><label for="text">Nome Completo:</label>
+      <br /><label for="text">Nome Completo:</label>
       <input
         style="border-radius: 10px; width: 250px"
         type="text"
@@ -437,10 +451,10 @@
       <label for="date2">Data de hoje:</label>
       <input type="date" id="date2" name="date" required />
            <br><br>
-           <div class="enviar">
-          <button type="submit" class="button">Enviar</button>
+           <div class="button-container">
+          <button type="submit" id="submit-form" class="button enviar" disabled>ENVIAR</button>
           </div>
-
+<br>
           <footer>
       <p style="color: white; margin-top: 50px;">
         &copy; 2024 Formulário criado por <br /><button class="a">
@@ -464,155 +478,176 @@
         </form>
           <br><br><!-- <p style="font-size: 15px;" class="">Após o envio desta ficha, volte a esta pagina e <a href="./assinatura.html"><span style="color:green">clique AQUI</span></a> para Assinar.</p>-->
         
+       <script src="https://cdn.jsdelivr.net/npm/signature_pad@3.0.0-beta.3/dist/signature_pad.min.js"></script>
 
-          <script>
-      document.getElementById("cep").addEventListener("keyup", function () {
-        var cep = this.value.replace(/\D/g, "");
-
+  <script>
+    // 1. Preenchimento automático do endereço pelo CEP
+    const cepInput = document.getElementById("cep");
+    if (cepInput) {
+      cepInput.addEventListener("keyup", function () {
+        const cep = this.value.replace(/\D/g, "");
         if (cep.length === 8) {
-          var xhr = new XMLHttpRequest();
-          xhr.open("GET", "https://viacep.com.br/ws/" + cep + "/json/");
-          xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-              var response = JSON.parse(xhr.responseText);
-
-              document.getElementById("rua").value = response.logradouro;
-              document.getElementById("bairro").value = response.bairro;
-              document.getElementById("cidade").value = response.localidade;
-              document.getElementById("estado").value = response.uf;
-            }
-          };
-          xhr.send();
+          fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(response => response.json())
+            .then(data => {
+              if (!data.erro) {
+                document.getElementById("rua").value = data.logradouro || "";
+                document.getElementById("bairro").value = data.bairro || "";
+                document.getElementById("cidade").value = data.localidade || "";
+                document.getElementById("estado").value = data.uf || "";
+              } else {
+                console.error("CEP não encontrado.");
+              }
+            })
+            .catch(error => console.error("Erro ao buscar o CEP:", error));
         }
       });
-    </script>
-
-    <!-- MUDEI AQUI -->
-    <script src="https://cdn.jsdelivr.net/npm/signature_pad@3.0.0-beta.3/dist/signature_pad.min.js"></script>
-<script>
-  // Inicializa o canvas mas desativa o desenho inicialmente
-  const canvas = document.getElementById("signature-pad");
-  const signaturePad = new SignaturePad(canvas, {
-    backgroundColor: "rgba(255, 255, 255, 0)",
-    penColor: "rgb(0, 0, 0)",
-  });
-  signaturePad.off(); // Desativa o canvas inicialmente
-
-  // Botão para habilitar a assinatura
-  document.getElementById("enable-sign").addEventListener("click", function () {
-    signaturePad.on(); // Ativa o canvas
-    document.getElementById("clear").disabled = false; // Habilita o botão de apagar
-    document.getElementById("download").disabled = false; // Habilita o botão de download
-    alert("Agora você pode Assinar.");
-  });
-
-  // Botão para apagar a assinatura
-  document.getElementById("clear").addEventListener("click", function () {
-    signaturePad.clear();
-  });
-
-  // Botão para baixar a assinatura
-  document.getElementById("download").addEventListener("click", function () {
-    if (signaturePad.isEmpty()) {
-      alert("Não há assinatura para baixar.");
-    } else {
-      const dataURL = signaturePad.toDataURL();
-      const link = document.createElement("a");
-      link.href = dataURL;
-      link.download = "assinatura.png";
-      link.click();
     }
-  });
-</script>
 
-    <script>
-    const text = "Nada é impossível quando você se dedica. A persistência é a chave do sucesso. Cada gota de suor é um passo em direção à sua meta. A força está dentro de você, apenas a liberte. Vença a batalha consigo mesmo a cada treino. Não espere pela oportunidade, crie-a. O corpo alcança o que a mente acredita. Treine com paixão, alcance com determinação. Seja o herói da sua própria jornada.";
-    const sentences = text.split('. ').map(sentence => sentence.trim() + '.'); // Divide o texto em frases
-    let index = 0;
-    const speed = 100; // Velocidade da digitação em milissegundos
+    // 2. Configuração da assinatura no canvas
+    const canvas = document.getElementById("signature-pad");
+    const enableSignBtn = document.getElementById("enable-sign");
+    const clearBtn = document.getElementById("clear");
+    const prepareSubmitBtn = document.getElementById("prepare-submit");
+    const fileInput = document.getElementById("signature-file");
+    const submitFormBtn = document.getElementById("submit-form");
 
-    function typeText() {
-        if (index < sentences.length) {
-            const sentence = sentences[index];
-            let charIndex = 0;
+    if (canvas && enableSignBtn && clearBtn && prepareSubmitBtn && fileInput && submitFormBtn) {
+      const ctx = canvas.getContext("2d");
+      const signaturePad = new SignaturePad(canvas, {
+        backgroundColor: "rgba(255, 255, 255, 1)",
+        penColor: "rgb(0, 0, 0)",
+      });
 
-            function typeChar() {
-                if (charIndex < sentence.length) {
-                    document.getElementById("typing-text").innerHTML += sentence.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeChar, speed);
-                } else {
-                    document.getElementById("typing-text").innerHTML += '<br>'; // Adiciona uma quebra de linha após a frase
-                    index++;
-                    setTimeout(typeText, speed * 2); // Aguarda um tempo extra antes de iniciar a próxima frase
-                }
-            }
+      // Desativa o canvas inicialmente
+      signaturePad.off();
 
-            typeChar();
+      // Texto a ser adicionado
+      const text = `Atesto para os devidos fins que recebi todas as orientações necessárias para responder o questionário do Estúdio Energia e Saúde, li e entendi todas as perguntas e respondi com a verdade. (Favor assinar abaixo)`;
+
+      let savedImageData = null;
+
+      function addTextToCanvas() {
+        if (!savedImageData) {
+          savedImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         }
-    }
 
-    // Função para iniciar a digitação quando o elemento estiver visível
-    function startTyping(entries, observer) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                typeText();
-                observer.disconnect(); // Para observar apenas uma vez
-            }
+        ctx.putImageData(savedImageData, 0, 0);
+        ctx.fillStyle = "black";
+        ctx.font = "12px Arial";
+        ctx.textAlign = "left";
+
+        const words = text.split(" ");
+        let y = 30;
+        let line = "";
+
+        words.forEach((word, index) => {
+          line += word + " ";
+          if ((index + 1) % 5 === 0 || index === words.length - 1) {
+            ctx.fillText(line, 8, y);
+            line = "";
+            y += 12;
+          }
         });
-    }
-
-    // Configuração do Intersection Observer
-    const observer = new IntersectionObserver(startTyping, { threshold: 1.0 });
-    observer.observe(document.getElementById('typing-container'));
-</script>
-
-<script>
-// Evento de clique para a seta "Voltar ao topo"
-document.addEventListener("DOMContentLoaded", function () {
-  var backToTopButton = document.getElementById("back-to-top")
-
-  window.addEventListener("scroll", function () {
-    if (window.pageYOffset > 300) {
-      backToTopButton.style.display = "block"
-    } else {
-      backToTopButton.style.display = "none"
-    }
-  })
-
-  backToTopButton.addEventListener("click", function (event) {
-    event.preventDefault()
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  })
-})
-
-</script>
-
-<script>
-    var instagramButton = document.getElementById('instagramButton');
-    var bodyHeight = document.body.scrollHeight;
-    var hidePercentage = 100; // Porcentagem do corpo onde o botão do Instagram deve desaparecer
-
-    window.addEventListener('scroll', function() {
-      var scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-      var scrollPercentage = (scrollPosition / bodyHeight) * 100;
-
-      if (scrollPosition === 0 || scrollPercentage >= hidePercentage) {
-        instagramButton.classList.add('hidden');
-      } else {
-        instagramButton.classList.remove('hidden');
       }
-    });
-  </script>  
-    
-<script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
+
+      // Habilita a assinatura ao clicar no botão "Assinar"
+      enableSignBtn.addEventListener("click", function () {
+        signaturePad.on(); // Habilita a assinatura
+        addTextToCanvas(); // Adiciona o texto no canvas
+        clearBtn.disabled = false; // Habilita o botão de limpar
+        prepareSubmitBtn.disabled = false; // Habilita o botão de preparar envio
+        enableSignBtn.disabled = true; // Desabilita o botão de assinar após o clique
+      });
+
+      // Função de limpar assinatura
+      clearBtn.addEventListener("click", function () {
+        signaturePad.clear();
+        savedImageData = null;
+        addTextToCanvas();
+      });
+
+      // Função de preparar envio
+      prepareSubmitBtn.addEventListener("click", function () {
+        if (signaturePad.isEmpty()) {
+          alert("Por favor, faça sua assinatura antes de enviar.");
+          return;
+        }
+
+        canvas.toBlob(function (blob) {
+          if (!blob) {
+            alert("Erro ao converter a assinatura em imagem.");
+            return;
+          }
+
+          const file = new File([blob], "assinatura_com_texto.png", { type: "image/png" });
+          const dataTransfer = new DataTransfer();
+          dataTransfer.items.add(file);
+          fileInput.files = dataTransfer.files;
+          submitFormBtn.disabled = false;
+          alert("Assinatura preparada! Clique em 'Enviar' para enviar o formulário.");
+        }, "image/png");
+      });
+    }
+
+    // 3. Texto animado
+    const typingContainer = document.getElementById("typing-container");
+    const typingText = document.getElementById("typing-text");
+    if (typingContainer && typingText) {
+      const textToType = "Nada é impossível quando você se dedica. A persistência é a chave do sucesso. Cada gota de suor é um passo em direção à sua meta. A força está dentro de você, apenas a liberte. Vença a batalha consigo mesmo a cada treino. Não espere pela oportunidade, crie-a. O corpo alcança o que a mente acredita. Treine com paixão, alcance com determinação. Seja o herói da sua própria jornada.";
+      const sentences = textToType.split('. ').map(sentence => sentence.trim() + '.');
+      let index = 0;
+      const speed = 100;
+
+      function typeText() {
+        if (index < sentences.length) {
+          const sentence = sentences[index];
+          let charIndex = 0;
+
+          function typeChar() {
+            if (charIndex < sentence.length) {
+              typingText.innerHTML += sentence.charAt(charIndex);
+              charIndex++;
+              setTimeout(typeChar, speed);
+            } else {
+              typingText.innerHTML += '<br>';
+              index++;
+              setTimeout(typeText, speed * 2);
+            }
+          }
+
+          typeChar();
+        }
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            typeText();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 1.0 });
+
+      observer.observe(typingContainer);
+    }
+
+    // 4. Botão "Voltar ao topo"
+    const backToTopButton = document.getElementById("back-to-top");
+    if (backToTopButton) {
+      window.addEventListener("scroll", function () {
+        backToTopButton.style.display = window.pageYOffset > 300 ? "block" : "none";
+      });
+
+      backToTopButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+  </script>
+
+
+         
             </body>
           <br><br>
 </html>
