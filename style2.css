@@ -556,3 +556,30 @@ a {
   -webkit-tap-highlight-color: transparent; /* Remove o flash azul em dispositivos Android */
   outline: none; /* Remove o contorno de foco */
 }
+
+/* teste */
+
+input[type="text"] {
+  width: 200px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #eee; /* cor padrão */
+}
+
+button:hover {
+  background-color: #ddd; /* cor ao passar o mouse */
+}
+
+#error {
+  color: red;
+  font-weight: bold;
+}
+
+#validarBtn {
+  border-radius: 10px;
+}

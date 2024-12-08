@@ -446,6 +446,15 @@
       />
 
       <br /><br />
+      <div id="cpfValidationSection">
+    <label for="cpf">CPF:</label>
+    <input type="text" id="cpf" autocomplete="off" maxlength="14" required>
+    <br><br><button type="button" id="validarBtn" onclick="validarCPF()">Validar CPF</button>
+    <p id="cpfMessage"></p>
+  </div>
+
+  <!-- Campo oculto para armazenar o CPF validado -->
+  <input type="hidden" id="cpfHidden" name="cpf">
       
 
       <label for="date2">Data de hoje:</label>
@@ -570,7 +579,7 @@
       // Função de preparar envio
       prepareSubmitBtn.addEventListener("click", function () {
         if (signaturePad.isEmpty()) {
-          alert("Por favor, faça sua assinatura antes de enviar.");
+          alert("Por favor, faça sua assinatura antes de preparar envio.");
           return;
         }
 
@@ -580,7 +589,7 @@
             return;
           }
 
-          const file = new File([blob], "assinatura_com_texto.png", { type: "image/png" });
+          const file = new File([blob], "assinatura_com_termo_de_consentimento_livre_e_esclarecido.png", { type: "image/png" });
           const dataTransfer = new DataTransfer();
           dataTransfer.items.add(file);
           fileInput.files = dataTransfer.files;
@@ -645,6 +654,109 @@
       });
     }
   </script>
+
+  <script>
+    var instagramButton = document.getElementById('instagramButton');
+    var bodyHeight = document.body.scrollHeight;
+    var hidePercentage = 100; // Porcentagem do corpo onde o botão do Instagram deve desaparecer
+
+    window.addEventListener('scroll', function() {
+      var scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+      var scrollPercentage = (scrollPosition / bodyHeight) * 100;
+
+      if (scrollPosition === 0 || scrollPercentage >= hidePercentage) {
+        instagramButton.classList.add('hidden');
+      } else {
+        instagramButton.classList.remove('hidden');
+      }
+    });
+  </script>  
+    
+<script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+
+<script>
+  function validarCPF() {
+  var cpf = document.getElementById('cpf').value;
+  cpf = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+  // Elementos de mensagem e botões
+  const cpfMessage = document.getElementById('cpfMessage');
+  const validarBtn = document.getElementById('validarBtn');
+  const submitBtn = document.getElementById('submit-form');
+
+  // Verifica se o CPF tem 11 dígitos
+  if (cpf.length !== 11) {
+    cpfMessage.innerText = 'CPF deve ter 11 dígitos.';
+    validarBtn.style.backgroundColor = 'red';
+    submitBtn.disabled = true;
+    return;
+  }
+
+  // Verifica se todos os dígitos são iguais
+  if (/^(\d)\1{10}$/.test(cpf)) {
+    cpfMessage.innerText = 'CPF inválido.';
+    validarBtn.style.backgroundColor = 'red';
+    submitBtn.disabled = true;
+    return;
+  }
+
+  // Cálculo dos dígitos verificadores
+  var soma = 0;
+  for (var i = 0; i < 9; i++) {
+    soma += parseInt(cpf.charAt(i)) * (10 - i);
+  }
+  var resto = soma % 11;
+  var digitoVerificador1 = resto < 2 ? 0 : 11 - resto;
+
+  soma = 0;
+  for (var i = 0; i < 10; i++) {
+    soma += parseInt(cpf.charAt(i)) * (11 - i);
+  }
+  resto = soma % 11;
+  var digitoVerificador2 = resto < 2 ? 0 : 11 - resto;
+
+  if (parseInt(cpf.charAt(9)) === digitoVerificador1 && parseInt(cpf.charAt(10)) === digitoVerificador2) {
+    cpfMessage.innerText = 'CPF válido.';
+    validarBtn.style.backgroundColor = 'green';
+
+    // Copia o CPF validado para o campo oculto
+    document.getElementById('cpfHidden').value = cpf;
+
+    // Habilita o botão de envio
+    submitBtn.disabled = false;
+  } else {
+    cpfMessage.innerText = 'CPF inválido.';
+    validarBtn.style.backgroundColor = 'red';
+    submitBtn.disabled = true;
+  }
+}
+
+document.getElementById('cpf').addEventListener('input', function (e) {
+  let cpf = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+  // Limita o CPF a 11 dígitos
+  if (cpf.length > 11) {
+    cpf = cpf.slice(0, 11);
+  }
+
+if (cpf.length <= 3) {
+    e.target.value = cpf;
+  } else if (cpf.length <= 6) {
+    e.target.value = `${cpf.slice(0, 3)}.${cpf.slice(3)}`;
+  } else if (cpf.length <= 9) {
+    e.target.value = `${cpf.slice(0, 3)}.${cpf.slice(3, 6)}.${cpf.slice(6)}`;
+  } else {
+    e.target.value = `${cpf.slice(0, 3)}.${cpf.slice(3, 6)}.${cpf.slice(6, 9)}-${cpf.slice(9)}`;
+  }
+});
+</script>
 
 
          
