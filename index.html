@@ -83,10 +83,14 @@
          position: fixed;
          margin-top: 300px;
          margin-right: 700px;        }
+
+        
+ 
     </style>
     
 </head>
 <body>
+  
     <div class="box">
       
         <div class="img-box">
@@ -118,14 +122,18 @@
           
 
           <div class="form-box2">
+            
             <div id="profile2">
               <img src="./assets/logo1.png" alt="" />        
             </div> 
           <p style="color: white;">MODELO DE ANAMINESE INTELIGENTE PARA VOCÊ APLICAR AGORA EM SEUS ALUNOS</p> 
+          
         <!-- <p style="font-size: 15px;" class="">Após o envio desta ficha, volte a esta pagina e <a href="./assinatura.html"><span style="color:green">clique AQUI</span></a> para Assinar.</p> --> 
              <!---->      
           <form action="https://formsubmit.co/amanciojr.144@gmail.com" id="form" method="post"  enctype="multipart/form-data" target="_blank">
+             
             
+
             <input type="text" name="MODELO DE ANAMINESE INTELIGENTE PARA VOCÊ APLICAR AGORA EM SEUS ALUNOS" hidden>
             <div class="input-group">            
               <label for="name">Nome Completo:</label><br>
@@ -441,7 +449,7 @@
         style="border-radius: 10px; width: 250px"
         type="text"
         id="text"
-        name="Nome Completo:"
+        name="Nome Completo"
         required
       />
 
@@ -449,12 +457,12 @@
       <div id="cpfValidationSection">
     <label for="cpf">CPF:</label>
     <input type="text" id="cpf" autocomplete="off" maxlength="14" required>
-    <br><br><button type="button" id="validarBtn" onclick="validarCPF()">Validar CPF</button>
+    <!--<button type="button" id="validarBtn" onclick="validarCPF()">Validar CPF</button>-->
     <p id="cpfMessage"></p>
   </div>
 
   <!-- Campo oculto para armazenar o CPF validado -->
-  <input type="hidden" id="cpfHidden" name="cpf">
+  <input type="hidden" id="cpfHidden" name="CPF">
       
 
       <label for="date2">Data de hoje:</label>
@@ -680,85 +688,93 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
+   <script>
+    document.getElementById('cpf').addEventListener('input', function (e) {
+      let cpf = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
 
-<script>
-  function validarCPF() {
-  var cpf = document.getElementById('cpf').value;
-  cpf = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
+      // Limita o CPF a 11 dígitos
+      if (cpf.length > 11) {
+        cpf = cpf.slice(0, 11);
+      }
 
-  // Elementos de mensagem e botões
-  const cpfMessage = document.getElementById('cpfMessage');
-  const validarBtn = document.getElementById('validarBtn');
-  const submitBtn = document.getElementById('submit-form');
+      // Formata o CPF enquanto o usuário digita
+      if (cpf.length <= 3) {
+        e.target.value = cpf;
+      } else if (cpf.length <= 6) {
+        e.target.value = `${cpf.slice(0, 3)}.${cpf.slice(3)}`;
+      } else if (cpf.length <= 9) {
+        e.target.value = `${cpf.slice(0, 3)}.${cpf.slice(3, 6)}.${cpf.slice(6)}`;
+      } else {
+        e.target.value = `${cpf.slice(0, 3)}.${cpf.slice(3, 6)}.${cpf.slice(6, 9)}-${cpf.slice(9)}`;
+      }
 
-  // Verifica se o CPF tem 11 dígitos
-  if (cpf.length !== 11) {
-    cpfMessage.innerText = 'CPF deve ter 11 dígitos.';
-    validarBtn.style.backgroundColor = 'red';
-    submitBtn.disabled = true;
-    return;
-  }
+      validarCPF(cpf);
+    });
 
-  // Verifica se todos os dígitos são iguais
-  if (/^(\d)\1{10}$/.test(cpf)) {
-    cpfMessage.innerText = 'CPF inválido.';
-    validarBtn.style.backgroundColor = 'red';
-    submitBtn.disabled = true;
-    return;
-  }
+    function validarCPF(cpf) {
+      const cpfMessage = document.getElementById('cpfMessage');
+      const submitBtn = document.getElementById('submit-form');
 
-  // Cálculo dos dígitos verificadores
-  var soma = 0;
-  for (var i = 0; i < 9; i++) {
-    soma += parseInt(cpf.charAt(i)) * (10 - i);
-  }
-  var resto = soma % 11;
-  var digitoVerificador1 = resto < 2 ? 0 : 11 - resto;
+      // Remove caracteres não numéricos para validação
+      cpf = cpf.replace(/\D/g, '');
 
-  soma = 0;
-  for (var i = 0; i < 10; i++) {
-    soma += parseInt(cpf.charAt(i)) * (11 - i);
-  }
-  resto = soma % 11;
-  var digitoVerificador2 = resto < 2 ? 0 : 11 - resto;
+      // CPF inválido específico
+      if (cpf === '12345678909') {
+        cpfMessage.innerText = 'CPF inválido.';
+        cpfMessage.style.color = 'red';
+        submitBtn.disabled = true;
+        return;
+      }
 
-  if (parseInt(cpf.charAt(9)) === digitoVerificador1 && parseInt(cpf.charAt(10)) === digitoVerificador2) {
-    cpfMessage.innerText = 'CPF válido.';
-    validarBtn.style.backgroundColor = 'green';
+      // Verifica se o CPF tem 11 dígitos
+      if (cpf.length !== 11) {
+        cpfMessage.innerText = 'CPF deve ter 11 dígitos.';
+        cpfMessage.style.color = 'red';
+        submitBtn.disabled = true;
+        return;
+      }
 
-    // Copia o CPF validado para o campo oculto
-    document.getElementById('cpfHidden').value = cpf;
+      // Verifica se todos os dígitos são iguais
+      if (/^(\d)\1{10}$/.test(cpf)) {
+        cpfMessage.innerText = 'CPF inválido.';
+        cpfMessage.style.color = 'red';
+        submitBtn.disabled = true;
+        return;
+      }
 
-    // Habilita o botão de envio
-    submitBtn.disabled = false;
-  } else {
-    cpfMessage.innerText = 'CPF inválido.';
-    validarBtn.style.backgroundColor = 'red';
-    submitBtn.disabled = true;
-  }
-}
+      // Cálculo dos dígitos verificadores
+      let soma = 0;
+      for (let i = 0; i < 9; i++) {
+        soma += parseInt(cpf.charAt(i)) * (10 - i);
+      }
+      let resto = soma % 11;
+      let digitoVerificador1 = resto < 2 ? 0 : 11 - resto;
 
-document.getElementById('cpf').addEventListener('input', function (e) {
-  let cpf = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+      soma = 0;
+      for (let i = 0; i < 10; i++) {
+        soma += parseInt(cpf.charAt(i)) * (11 - i);
+      }
+      resto = soma % 11;
+      let digitoVerificador2 = resto < 2 ? 0 : 11 - resto;
 
-  // Limita o CPF a 11 dígitos
-  if (cpf.length > 11) {
-    cpf = cpf.slice(0, 11);
-  }
+      if (parseInt(cpf.charAt(9)) === digitoVerificador1 && parseInt(cpf.charAt(10)) === digitoVerificador2) {
+        cpfMessage.innerText = 'CPF válido.';
+        cpfMessage.style.color = 'green';
 
-if (cpf.length <= 3) {
-    e.target.value = cpf;
-  } else if (cpf.length <= 6) {
-    e.target.value = `${cpf.slice(0, 3)}.${cpf.slice(3)}`;
-  } else if (cpf.length <= 9) {
-    e.target.value = `${cpf.slice(0, 3)}.${cpf.slice(3, 6)}.${cpf.slice(6)}`;
-  } else {
-    e.target.value = `${cpf.slice(0, 3)}.${cpf.slice(3, 6)}.${cpf.slice(6, 9)}-${cpf.slice(9)}`;
-  }
-});
-</script>
+        // Copia o CPF validado para o campo oculto
+        document.getElementById('cpfHidden').value = cpf;
 
+        // Habilita o botão de envio
+        submitBtn.disabled = false;
+      } else {
+        cpfMessage.innerText = 'CPF inválido.';
+        cpfMessage.style.color = 'red';
+        submitBtn.disabled = true;
+      }
+    }
+  </script>
 
+   
          
             </body>
           <br><br>
