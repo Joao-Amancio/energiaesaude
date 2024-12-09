@@ -538,13 +538,8 @@ footer {
 footer,
 .amancio {
   padding: 5px 25px 5px 25px;
-  background: rgba(0, 0, 0, 0.024);
+  background: none;
   margin-bottom: -100px;
-}
-
-footer,
-p {
-  color: white;
 }
 
 .a {
