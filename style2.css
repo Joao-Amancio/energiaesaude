@@ -580,26 +580,94 @@ button:hover {
 }
 
 .scroll-down {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 24px;
-      cursor: pointer;
-      animation: bounce 1.5s infinite;
-    }
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  cursor: pointer;
+  animation: bounce 1.5s infinite;
+}
 
-    /* Animação de pulo para a seta */
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateX(-50%) translateY(0);
-      }
-      40% {
-        transform: translateX(-50%) translateY(-10px);
-      }
-      60% {
-        transform: translateX(-50%) translateY(-5px);
-      }
-    }
+/* Animação de pulo para a seta */
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
 
-    
+#picture__input {
+  display: none;
+}
+
+.picture {
+  width: 400px;
+  aspect-ratio: 16/9;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  border: 2px dashed currentcolor;
+  cursor: pointer;
+  font-family: sans-serif;
+  transition: color 300ms ease-in-out, background 300ms ease-in-out;
+  outline: none;
+  overflow: hidden;
+}
+
+.picture:hover {
+  color: #777;
+  background: #ccc;
+}
+
+.picture:active {
+  border-color: turquoise;
+  color: turquoise;
+  background: #eee;
+}
+
+.picture:focus {
+  color: #777;
+  background: #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+/*
+.picture__img {
+  max-width: 100%;
+}
+.picture__image {
+  color: #838282; 
+  font-size: 16px; 
+} */
+
+.picture__image {
+  color: #838282; /* Cor mais escura */
+  font-size: 16px; /* Tamanho da fonte */
+  display: flex; /* Usa flexbox */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  width: 100%; /* Garante que ocupa toda a largura do contêiner */
+  height: 100%; /* Garante que ocupa toda a altura do contêiner */
+  text-align: center; /* Alinha o texto horizontalmente */
+}
+
+
+.picture__image:hover {
+  color: #555;             /* Cor mais escura ao passar o mouse */
+}
+
+/* Efeito focus */
+.picture:focus .picture__image {
+  color: turquoise;        /* Cor ao focar no elemento */
+}
