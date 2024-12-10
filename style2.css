@@ -611,7 +611,7 @@ button:hover {
 }
 
 .picture {
-  width: 400px;
+  width: 300px;
   aspect-ratio: 16/9;
   background: #ddd;
   display: flex;
@@ -624,7 +624,9 @@ button:hover {
   transition: color 300ms ease-in-out, background 300ms ease-in-out;
   outline: none;
   overflow: hidden;
+  margin: 50px auto; /* Centraliza horizontalmente com margens automáticas */
 }
+
 
 .picture:hover {
   color: #777;
