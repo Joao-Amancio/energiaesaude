@@ -613,12 +613,12 @@ button:hover {
 .picture {
   width: 301px;
   aspect-ratio: 16/9;
-  background: #ddd;
+  background: rgba(0, 0, 0, 0.402);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #aaa;
-  border: 2px dashed currentcolor;
+  border: 2px dashed currentcolor; 
   cursor: pointer;
   font-family: sans-serif;
   transition: color 300ms ease-in-out, background 300ms ease-in-out;
@@ -627,21 +627,20 @@ button:hover {
   margin: 50px auto; /* Centraliza horizontalmente com margens automáticas */
 }
 
-
 .picture:hover {
   color: #777;
-  background: #ccc;
+  background: #0808089c;
 }
 
 .picture:active {
-  border-color: turquoise;
-  color: turquoise;
+  border-color: rgb(182, 97, 32);
+  color: rgb(182, 97, 32);
   background: #eee;
 }
 
 .picture:focus {
   color: #777;
-  background: #ccc;
+  background: #0e0e0e;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 /*
@@ -662,14 +661,23 @@ button:hover {
   width: 100%; /* Garante que ocupa toda a largura do contêiner */
   height: 100%; /* Garante que ocupa toda a altura do contêiner */
   text-align: center; /* Alinha o texto horizontalmente */
+  object-fit: contain; /* Garante que a imagem se ajusta mantendo a proporção */
+  object-position: center; /* Centraliza a imagem dentro do contêiner */
 }
 
-
 .picture__image:hover {
-  color: #555;             /* Cor mais escura ao passar o mouse */
+  color: #555; /* Cor mais escura ao passar o mouse */
 }
 
 /* Efeito focus */
 .picture:focus .picture__image {
-  color: turquoise;        /* Cor ao focar no elemento */
+  color: rgb(182, 97, 32); /* Cor ao focar no elemento */
+}
+
+.picture__img {
+  max-width: 100%; /* Garante que a imagem não ultrapasse a largura do contêiner */
+  max-height: 100%; /* Garante que a imagem não ultrapasse a altura do contêiner */
+  object-fit: contain; /* Mantém a proporção da imagem e ajusta para caber no contêiner */
+  object-position: center; /* Centraliza a imagem dentro do contêiner */
+  display: block; /* Evita espaços extras abaixo da imagem */
 }
