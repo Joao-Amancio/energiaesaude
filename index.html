@@ -432,9 +432,9 @@
     <br><br>
     <button type="button" id="clear" class="button" disabled>Apagar</button>
     <br><br>
-    <button type="button" id="prepare-submit" class="button" disabled>
+   <!-- <button type="button" id="prepare-submit" class="button" disabled>
       Preparar Envio
-    </button>
+    </button>-->
     <br><br>
     <input type="file" id="signature-file" name="file" style="display: none;" />
   
@@ -530,7 +530,6 @@
     const canvas = document.getElementById("signature-pad");
 const enableSignBtn = document.getElementById("enable-sign");
 const clearBtn = document.getElementById("clear");
-const prepareSubmitBtn = document.getElementById("prepare-submit");
 const submitFormBtn = document.getElementById("submit-form");
 const fileInput = document.getElementById("signature-file");
 
@@ -575,21 +574,19 @@ enableSignBtn.addEventListener("click", function () {
   signaturePad.on();
   addTextToCanvas();
   clearBtn.disabled = false;
-  prepareSubmitBtn.disabled = false;
   enableSignBtn.disabled = true;
 });
 
+// Função de limpar assinatura
 clearBtn.addEventListener("click", function () {
   signaturePad.clear();
   savedImageData = null;
   addTextToCanvas();
 });
 
-prepareSubmitBtn.addEventListener("click", function () {
-  if (signaturePad.isEmpty()) {
-    alert("Por favor, faça sua assinatura antes de preparar envio.");
-    return;
-  }
+// Converte a assinatura em imagem automaticamente após a assinatura
+signaturePad.onEnd = function () {
+  if (signaturePad.isEmpty()) return;
 
   canvas.toBlob(function (blob) {
     if (!blob) {
@@ -604,8 +601,7 @@ prepareSubmitBtn.addEventListener("click", function () {
     submitFormBtn.disabled = false;
     alert("Assinatura preparada! Clique em 'Enviar' para enviar o formulário.");
   }, "image/png");
-});
-
+};
 
     // 3. Texto animado
     const typingContainer = document.getElementById("typing-container");
