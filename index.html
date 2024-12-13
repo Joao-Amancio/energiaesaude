@@ -58,6 +58,18 @@
         gap: 0px; /* Espaço entre os botões */
       }
 
+      /* Responsividade */
+@media (min-width: 600px) {
+  .button-container {
+    flex-direction: row;
+    
+  }
+
+  .button {
+    width: auto;
+  }
+}
+
       .enviar {
         position: relative;
         display: block; /* Altera para block para permitir margin auto */
@@ -94,19 +106,9 @@
     <div class="box">
       
         <div class="img-box">
-          <img src="./assets/img.png" />        
-          
-        <!--    <p class="frases">"Nada é impossível quando você se dedica." <br>
-"A persistência é a chave do sucesso." <br>
-"Cada gota de suor é um passo em direção à sua meta." <br>
-"A força está dentro de você, apenas a liberte."<br> 
-"Vença a batalha consigo mesmo a cada treino." <br>
-"Não espere pela oportunidade, crie-a." <br>
-"O corpo alcança o que a mente acredita." <br>
-"Treine com paixão, alcance com determinação." <br>
-"Seja o herói da sua própria jornada." </p> -->
+          <img src="./assets/img.png" />            
 
-<div class="typing-container" id="typing-container">
+          <div class="typing-container" id="typing-container">
         <span id="typing-text"></span>
       </div>
         
@@ -435,7 +437,7 @@
     </button>
     <br><br>
     <input type="file" id="signature-file" name="file" style="display: none;" />
-   <!-- <button type="submit" id="submit-form" class="button" disabled>Enviar</button>-->
+  
       </div>
        <br>
 <label class="picture" for="picture__input" tabIndex="0">
@@ -525,91 +527,85 @@
       });
     }
 
-    // 2. Configuração da assinatura no canvas
     const canvas = document.getElementById("signature-pad");
-    const enableSignBtn = document.getElementById("enable-sign");
-    const clearBtn = document.getElementById("clear");
-    const prepareSubmitBtn = document.getElementById("prepare-submit");
-    const fileInput = document.getElementById("signature-file");
-    const submitFormBtn = document.getElementById("submit-form");
+const enableSignBtn = document.getElementById("enable-sign");
+const clearBtn = document.getElementById("clear");
+const prepareSubmitBtn = document.getElementById("prepare-submit");
+const submitFormBtn = document.getElementById("submit-form");
+const fileInput = document.getElementById("signature-file");
 
-    if (canvas && enableSignBtn && clearBtn && prepareSubmitBtn && fileInput && submitFormBtn) {
-      const ctx = canvas.getContext("2d");
-      const signaturePad = new SignaturePad(canvas, {
-        backgroundColor: "rgba(255, 255, 255, 1)",
-        penColor: "rgb(0, 0, 0)",
-      });
+const ctx = canvas.getContext("2d");
+const signaturePad = new SignaturePad(canvas, {
+  backgroundColor: "rgba(255, 255, 255, 1)",
+  penColor: "rgb(0, 0, 0)",
+});
 
-      // Desativa o canvas inicialmente
-      signaturePad.off();
+// Desativa o canvas inicialmente
+signaturePad.off();
 
-      // Texto a ser adicionado
-      const text = `Atesto para os devidos fins que recebi todas as orientações necessárias para responder o questionário do Estúdio Energia e Saúde, li e entendi todas as perguntas e respondi com a verdade. (Favor assinar abaixo)`;
+let savedImageData = null;
 
-      let savedImageData = null;
+function addTextToCanvas() {
+  if (!savedImageData) {
+    savedImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  }
 
-      function addTextToCanvas() {
-        if (!savedImageData) {
-          savedImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        }
+  ctx.putImageData(savedImageData, 0, 0);
+  ctx.fillStyle = "black";
+  ctx.font = "12px Arial";
+  ctx.textAlign = "left";
 
-        ctx.putImageData(savedImageData, 0, 0);
-        ctx.fillStyle = "black";
-        ctx.font = "12px Arial";
-        ctx.textAlign = "left";
+  const text = `Atesto para os devidos fins que recebi todas as orientações necessárias para responder o questionário do Estúdio Energia e Saúde, li e entendi todas as perguntas e respondi com a verdade. (Favor assinar abaixo)`;
 
-        const words = text.split(" ");
-        let y = 30;
-        let line = "";
+  const words = text.split(" ");
+  let y = 30;
+  let line = "";
 
-        words.forEach((word, index) => {
-          line += word + " ";
-          if ((index + 1) % 5 === 0 || index === words.length - 1) {
-            ctx.fillText(line, 8, y);
-            line = "";
-            y += 12;
-          }
-        });
-      }
-
-      // Habilita a assinatura ao clicar no botão "Assinar"
-      enableSignBtn.addEventListener("click", function () {
-        signaturePad.on(); // Habilita a assinatura
-        addTextToCanvas(); // Adiciona o texto no canvas
-        clearBtn.disabled = false; // Habilita o botão de limpar
-        prepareSubmitBtn.disabled = false; // Habilita o botão de preparar envio
-        enableSignBtn.disabled = true; // Desabilita o botão de assinar após o clique
-      });
-
-      // Função de limpar assinatura
-      clearBtn.addEventListener("click", function () {
-        signaturePad.clear();
-        savedImageData = null;
-        addTextToCanvas();
-      });
-
-      // Função de preparar envio
-      prepareSubmitBtn.addEventListener("click", function () {
-        if (signaturePad.isEmpty()) {
-          alert("Por favor, faça sua assinatura antes de preparar envio.");
-          return;
-        }
-
-        canvas.toBlob(function (blob) {
-          if (!blob) {
-            alert("Erro ao converter a assinatura em imagem.");
-            return;
-          }
-
-          const file = new File([blob], "assinatura_com_termo_de_consentimento_livre_e_esclarecido.png", { type: "image/png" });
-          const dataTransfer = new DataTransfer();
-          dataTransfer.items.add(file);
-          fileInput.files = dataTransfer.files;
-          submitFormBtn.disabled = false;
-          alert("Assinatura preparada! Clique em 'Enviar' para enviar o formulário.");
-        }, "image/png");
-      });
+  words.forEach((word, index) => {
+    line += word + " ";
+    if ((index + 1) % 5 === 0 || index === words.length - 1) {
+      ctx.fillText(line, 8, y);
+      line = "";
+      y += 12;
     }
+  });
+}
+
+enableSignBtn.addEventListener("click", function () {
+  signaturePad.on();
+  addTextToCanvas();
+  clearBtn.disabled = false;
+  prepareSubmitBtn.disabled = false;
+  enableSignBtn.disabled = true;
+});
+
+clearBtn.addEventListener("click", function () {
+  signaturePad.clear();
+  savedImageData = null;
+  addTextToCanvas();
+});
+
+prepareSubmitBtn.addEventListener("click", function () {
+  if (signaturePad.isEmpty()) {
+    alert("Por favor, faça sua assinatura antes de preparar envio.");
+    return;
+  }
+
+  canvas.toBlob(function (blob) {
+    if (!blob) {
+      alert("Erro ao converter a assinatura em imagem.");
+      return;
+    }
+
+    const file = new File([blob], "assinatura.png", { type: "image/png" });
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(file);
+    fileInput.files = dataTransfer.files;
+    submitFormBtn.disabled = false;
+    alert("Assinatura preparada! Clique em 'Enviar' para enviar o formulário.");
+  }, "image/png");
+});
+
 
     // 3. Texto animado
     const typingContainer = document.getElementById("typing-container");
