@@ -51,25 +51,35 @@
         -ms-user-select: none;
         user-select: none;
       }   
-        
-         .button-container {
-        display: grid;
-        grid-auto-flow: column;
-        gap: 0px; /* Espaço entre os botões */
-      }
 
-      /* Responsividade */
-@media (min-width: 600px) {
+      .button-container {
+  display: flex;            /* Usa flexbox para alocar os botões */
+  flex-direction: row;      /* Alinha os botões lado a lado */
+  justify-content: center;  /* Centraliza os botões horizontalmente */
+  gap: 20px;                /* Espaço entre os botões */
+  width: 100%;              /* Garante que o contêiner ocupe toda a largura */
+  padding: 20px;            /* Espaçamento interno para melhor visualização */
+  text-align: center;
+}
+
+/* Estilos dos botões */
+.button {
+  padding: 10px ;       /* Espaçamento interno para os botões */
+  font-size: 18px;          /* Tamanho da fonte */
+  text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
   .button-container {
-    flex-direction: row;
-    
-  }
-
-  .button {
-    width: auto;
+    flex-direction: row ;    /* Garante que os botões fiquem lado a lado em telas menores */
+    justify-content: center; /* Garante que os botões fiquem centralizados */
   }
 }
 
+
+        
+        
       .enviar {
         position: relative;
         display: block; /* Altera para block para permitir margin auto */
@@ -156,7 +166,7 @@
             </div> <br>
             <div class="input-group w50">
             <label for="date2">Qual a sua Idade?</label>
-            <input type="text" id="date2" name="Qual a sua Idade?" required />
+            <input type="text" id="date2" name="Qual a sua Idade?" placeholder="Digite sua Idade" required />
             
           </div>
 
