@@ -90,12 +90,23 @@
             opacity: 1; 
         }
       
-        .typing-container {
+       .typing-container {
          display: block;
          position: fixed;
          margin-top: 300px;
          margin-right: 700px;        }
+        
 
+@media (max-width: 768px) { 
+
+
+  .typing-container {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin-top: 20px;
+  }
+}
         
  
     </style>
@@ -589,19 +600,16 @@ signaturePad.onEnd = function () {
   if (signaturePad.isEmpty()) return;
 
   canvas.toBlob(function (blob) {
-    if (!blob) {
-      alert("Erro ao converter a assinatura em imagem.");
-      return;
-    }
+    if (!blob) return;
 
     const file = new File([blob], "assinatura.png", { type: "image/png" });
     const dataTransfer = new DataTransfer();
     dataTransfer.items.add(file);
     fileInput.files = dataTransfer.files;
     submitFormBtn.disabled = false;
-    alert("Assinatura preparada! Clique em 'Enviar' para enviar o formulário.");
   }, "image/png");
 };
+
 
     // 3. Texto animado
     const typingContainer = document.getElementById("typing-container");

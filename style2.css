@@ -63,7 +63,7 @@ input[type="checkbox"] {
   float: left;
   padding-right: 15px;
 }
-
+/*
 .box {
   display: flex;
   width: 1000px;
@@ -84,7 +84,45 @@ input[type="checkbox"] {
   left: 220px;
   margin-bottom: 110%;
   border-radius: 70px;
+} */
+
+/* Centraliza a .box na tela */
+.box {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative; /* Para manter o contexto de posicionamento */
 }
+
+/* Estilização da img-box */
+.img-box {
+  background-color: rgba(159, 81, 52, 0.764);
+  width: 50%;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+/* Estilização da imagem fixa e centralizada */
+.img-box img {
+  position: fixed;
+  top: 30%;              /* Centraliza verticalmente */
+  left: 30%;             /* Centraliza horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta o ponto de referência para o centro */
+  width: 30%;            /* Define um tamanho proporcional */
+  max-width: 300px;      /* Define um tamanho máximo */
+  border-radius: 70px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .img-box img {
+    width: 50%;          /* Reduz o tamanho da imagem em telas menores */
+  }
+}
+
 
 .form-box {
   background-color: rgba(4, 0, 0, 0.927);
