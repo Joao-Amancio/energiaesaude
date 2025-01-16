@@ -11,7 +11,7 @@
 <br>
 <p>Imagem do Formulário abaixo, vista pelo desktop.</p>
 <p align="center">
-  <img alt="projeto DevLinks" src="https://github.com/Joao-Amancio/formulario/assets/Capturar_2025_01_16_09_36_02_605">
+  ![Image](https://github.com/user-attachments/assets/2a5a955d-ac7f-4ccb-b928-6e405342a9e7)
 </p>
 
 ## 🚀 Tecnologias
