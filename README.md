@@ -6,8 +6,13 @@
  </p>
 
 <br>
-<p> Olá! Seja bem vindo(a)!!! Este projeto é a continuação da ficha de cadastro do repositório "formulário", trata-se de um questionário "anamnese" para pacientes. </p>
+
+<p> Olá! Seja bem vindo(a)!!! Fique a vontade pra navegar aqui e conhecer este Projeto de Formulário digital que está incrível!</p>
 <br>
+<p>Imagem do Formulário abaixo, vista pelo desktop.</p>
+<p align="center">
+  <img alt="projeto DevLinks" src="https://github.com/Joao-Amancio/formulario/assets/Capturar_2025_01_16_09_36_02_605">
+</p>
 
 ## 🚀 Tecnologias
 
