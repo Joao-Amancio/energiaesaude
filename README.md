@@ -7,11 +7,13 @@
 
 <br>
 
-<p> Olá! Seja bem vindo(a)!!! Fique a vontade pra navegar aqui e conhecer este Projeto de Formulário digital que está incrível!</p>
+<p> Olá! Seja bem vindo(a)!!! Fique a vontade pra navegar aqui e conhecer este Projeto de Formulário de Anamnese digital que está incrível!</p>
 <br>
 <p>Imagem do Formulário abaixo, vista pelo desktop.</p>
 <p align="center">
-  ![Image](https://github.com/user-attachments/assets/2a5a955d-ac7f-4ccb-b928-6e405342a9e7)
+
+  <img alt="projeto DevLinks" src="https://github.com/user-attachments/assets/2a5a955d-ac7f-4ccb-b928-6e405342a9e7">
+  
 </p>
 
 ## 🚀 Tecnologias
